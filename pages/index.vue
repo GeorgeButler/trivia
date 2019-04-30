@@ -1,47 +1,49 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-
-      <card
-        title="Free"
-        icon="github-circle"
-      >
-        Open source on <a href="https://github.com/buefy/buefy"> GitHub</a>
-      </card>
-
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">Every</b> component is responsive
-      </card>
-
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">Vue.js</a> and <a href="http://bulma.io/">Bulma</a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-
-    </div>
-  </section>
+	<div class="container">
+		<section class="section">
+			<Question v-bind="questions[this.currentQuestion]"/>
+			<b-button @click="submitAnswer" type="is-primary">Next Question</b-button>
+		</section>
+	</div>
 </template>
 
 <script>
-import Card from '~/components/Card'
+import Question from '~/components/Question'
 
 export default {
-  name: 'HomePage',
+	name: 'HomePage',
+	components: {
+		Question
+	},
+	data: function() {
+		return {
+			apiResponse: {
+				response_code: -1,
+				results: []
+			},
+			currentQuestion: 0,
+			currentScore: 0
+		}
+	},
+	computed: {
+		questions: function() {
+			return this.apiResponse.results
+		}
+	},
+	methods: {
+		async fetchQuestions() {
+			const response = await this.$axios.$get(
+				'https://opentdb.com/api.php?amount=10'
+			)
 
-  components: {
-    Card
-  }
+			this.apiResponse = response
+		},
+		async submitAnswer() {
+			this.currentQuestion = this.currentQuestion + 1
+		}
+	},
+	mounted: function() {
+		this.fetchQuestions()
+	}
 }
 </script>
