@@ -2,13 +2,13 @@
 	<div>
 		<div class="title has-text-centered" v-html="question"></div>
 		<div class="buttons is-centered">
-			<b-button
-				type="is-primary"
-				size="is-large"
+			<button
+				class="button is-primary is-large is-fullwidth"
 				v-for="answer in answers"
 				:key="answer"
 				v-html="answer"
-			></b-button>
+				@click="clickAnswer('neat')"
+			></button>
 		</div>
 	</div>
 </template>
@@ -44,6 +44,9 @@ export default {
 			this.answers = this.answers.concat(this.incorrect_answers)
 
 			return this.answers
+		},
+		clickAnswer(clicked) {
+			this.$emit('answer', clicked)
 		}
 	},
 	watch: {

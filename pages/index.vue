@@ -1,16 +1,18 @@
 <template>
 	<div class="container">
-		<section class="section" v-on:click="submitAnswer">
+		<section class="section is-unselectable">
 			<QuestionTracker
 				v-if="!isLoading"
+				v-bind="questions[this.currentQuestion]"
 				:curQuestion="this.currentQuestion"
 				:totalQuestions="this.questions.length"
-				:category="questions[this.currentQuestion].category"
-				:difficulty="questions[this.currentQuestion].difficulty"
 			/>
 			<Question v-bind="questions[this.currentQuestion]"/>
-			<b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
+			<section class="section">
+				<div class="has-text-centered is-uppercase">Score: {{currentScore}}</div>
+			</section>
 		</section>
+		<div class="loading" v-if="isLoading"></div>
 	</div>
 </template>
 
@@ -41,7 +43,7 @@ export default {
 		}
 	},
 	methods: {
-		fetchQuestions: async function() {
+		async fetchQuestions() {
 			const response = await this.$axios.$get(
 				'https://opentdb.com/api.php?amount=10'
 			)
@@ -51,7 +53,9 @@ export default {
 				this.isLoading = false
 			}
 		},
-		submitAnswer: function() {
+		submitAnswer(e) {
+			console.log(e)
+
 			const next = this.currentQuestion + 1
 
 			if (next < this.questions.length) {
