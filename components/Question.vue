@@ -1,13 +1,14 @@
 <template>
-	<div class="box">
-		<div class="title" v-html="question"></div>
-		<div class="buttons" v-if="type=='multiple'">
+	<div>
+		<div class="title has-text-centered" v-html="question"></div>
+		<div class="buttons is-centered">
 			<b-button
 				type="is-primary"
-				rounded="true"
+				size="is-large"
 				v-for="answer in answers"
-				:key="answer.id"
-			>{{ answer }}</b-button>
+				:key="answer"
+				v-html="answer"
+			></b-button>
 		</div>
 	</div>
 </template>

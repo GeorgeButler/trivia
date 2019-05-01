@@ -1,19 +1,22 @@
 <template>
 	<div class="container">
-		<section class="section">
+		<section class="section" v-on:click="submitAnswer">
+			<QuestionTracker :curQuestion="this.currentQuestion" :totalQuestions="this.questions.length"/>
 			<Question v-bind="questions[this.currentQuestion]"/>
-			<b-button @click="submitAnswer" type="is-primary">Next Question</b-button>
+			<b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
 		</section>
 	</div>
 </template>
 
 <script>
 import Question from '~/components/Question'
+import QuestionTracker from '~/components/QuestionTracker'
 
 export default {
 	name: 'HomePage',
 	components: {
-		Question
+		Question,
+		QuestionTracker
 	},
 	data: function() {
 		return {
@@ -21,6 +24,7 @@ export default {
 				response_code: -1,
 				results: []
 			},
+			isLoading: true,
 			currentQuestion: 0,
 			currentScore: 0
 		}
@@ -31,15 +35,22 @@ export default {
 		}
 	},
 	methods: {
-		async fetchQuestions() {
+		fetchQuestions: async function() {
 			const response = await this.$axios.$get(
 				'https://opentdb.com/api.php?amount=10'
 			)
 
-			this.apiResponse = response
+			if (response) {
+				this.apiResponse = response
+				this.isLoading = false
+			}
 		},
-		async submitAnswer() {
-			this.currentQuestion = this.currentQuestion + 1
+		submitAnswer: function() {
+			const next = this.currentQuestion + 1
+
+			if (next <= this.questions.length) {
+				this.currentQuestion = next
+			}
 		}
 	},
 	mounted: function() {
