@@ -1,7 +1,13 @@
 <template>
 	<div class="container">
 		<section class="section" v-on:click="submitAnswer">
-			<QuestionTracker :curQuestion="this.currentQuestion" :totalQuestions="this.questions.length"/>
+			<QuestionTracker
+				v-if="!isLoading"
+				:curQuestion="this.currentQuestion"
+				:totalQuestions="this.questions.length"
+				:category="questions[this.currentQuestion].category"
+				:difficulty="questions[this.currentQuestion].difficulty"
+			/>
 			<Question v-bind="questions[this.currentQuestion]"/>
 			<b-loading :is-full-page="true" :active.sync="isLoading"></b-loading>
 		</section>
@@ -48,7 +54,7 @@ export default {
 		submitAnswer: function() {
 			const next = this.currentQuestion + 1
 
-			if (next <= this.questions.length) {
+			if (next < this.questions.length) {
 				this.currentQuestion = next
 			}
 		}

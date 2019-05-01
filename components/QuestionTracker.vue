@@ -1,5 +1,13 @@
 <template>
-	<p>{{curQuestionFormatted}} / {{totalQuestions}}</p>
+	<div class="columns">
+		<div class="column">
+			<div class="has-text-centered is-uppercase">Difficulty: {{difficulty}}</div>
+			<div class="has-text-centered is-uppercase">{{category}}</div>
+		</div>
+		<div class="column">
+			<div class="has-text-centered is-uppercase">Question {{curQuestion + 1}} / {{totalQuestions}}</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -12,11 +20,14 @@ export default {
 		totalQuestions: {
 			type: Number,
 			default: '0'
-		}
-	},
-	computed: {
-		curQuestionFormatted: function() {
-			return this.curQuestion + 1
+		},
+		difficulty: {
+			type: String,
+			default: ''
+		},
+		category: {
+			type: String,
+			default: ''
 		}
 	}
 }
