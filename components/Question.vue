@@ -1,57 +1,39 @@
 <template>
-	<div>
-		<div class="title has-text-centered" v-html="question"></div>
-		<div class="buttons is-centered">
+	<section class="section">
+		<h1 class="title has-text-centered" v-html="question"></h1>
+		<div class="buttons">
 			<button
 				class="button is-primary is-large is-fullwidth"
 				v-for="answer in answers"
-				:key="answer"
-				v-html="answer"
-				@click="clickAnswer('neat')"
-			></button>
+				v-bind:key="answer"
+			>{{ answer }}</button>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
 export default {
+	name: 'Question',
 	props: {
 		question: {
 			type: String,
-			default: ''
-		},
-		type: {
-			type: String,
-			default: 'boolean'
+			required: true
 		},
 		correct_answer: {
 			type: String,
-			default: ''
+			required: true
 		},
 		incorrect_answers: {
-			type: Array
+			type: Array,
+			required: true
 		}
 	},
-	data: function() {
-		return {
-			answers: []
-		}
-	},
-	methods: {
-		updateQuestion: function() {
-			this.answers = []
-			this.answers.push(this.correct_answer)
-			this.answers = this.answers.concat(this.incorrect_answers)
+	computed: {
+		answers: function() {
+			let answers = []
+			answers = this.incorrect_answers.concat(this.correct_answer)
 
-			return this.answers
-		},
-		clickAnswer(clicked) {
-			this.$emit('answer', clicked)
-		}
-	},
-	watch: {
-		question: function(newQuestion, oldQuestion) {
-			this.updateQuestion()
+			return answers
 		}
 	}
 }

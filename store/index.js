@@ -1,16 +1,23 @@
 export const state = () => ({
-	data: []
+	response: {},
+	game: {
+		currentQuestion: 0,
+		currentScore: 0
+	}
 })
 
 export const mutations = {
-	SET (state, data) {
-		state.data = data
+	setResponse (state, response) {
+		state.response = response
 	}
 }
 
 export const actions = {
-	async fetch ({ commit }) {
-		const { data } = await axios.get('https://opentdb.com/api.php?amount=10')
-		commit('SET', data)
+	async getResponse ({ commit }) {
+		await this.$axios.get('https://opentdb.com/api.php?amount=10').then((res) => {
+			if (res.status === 200) {
+				commit('setResponse', res.data)
+			}
+		})
 	}
 }

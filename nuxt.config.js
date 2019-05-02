@@ -24,7 +24,10 @@ module.exports = {
 	/*
   ** Global CSS
   */
-	css: [],
+	css: [
+		{ src: '~/assets/css/main.scss', lang: 'scss' },
+		{ src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
+	],
 
 	/*
   ** Plugins to load before mounting the App
@@ -34,7 +37,7 @@ module.exports = {
 	/*
   ** Nuxt.js modules
   */
-	modules: [ '@nuxtjs/axios', '@nuxtjs/bulma' ],
+	modules: [ '@nuxtjs/axios' ],
 	/*
   ** Axios module configuration
   */
@@ -46,15 +49,6 @@ module.exports = {
   ** Build configuration
   */
 	build: {
-		postcss: {
-			plugins: {
-				'postcss-preset-env': {
-					features: {
-						customProperties: false
-					}
-				}
-			}
-		},
 		extend (config, ctx) {}
 	}
 }
