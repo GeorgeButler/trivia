@@ -2,13 +2,18 @@ export const state = () => ({
 	response: {},
 	game: {
 		currentQuestion: 0,
-		currentScore: 0
+		currentScore: 0,
+		currentAnswer: ''
 	}
 })
 
 export const mutations = {
 	setResponse (state, response) {
 		state.response = response
+	},
+	setAnswer (state, answer) {
+		state.game.currentAnswer = answer
+		// Advance question
 	}
 }
 
@@ -19,5 +24,8 @@ export const actions = {
 				commit('setResponse', res.data)
 			}
 		})
+	},
+	async setAnswer ({ commit }) {
+		commit('setAnswer', 'YEET')
 	}
 }

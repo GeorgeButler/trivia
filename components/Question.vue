@@ -6,6 +6,7 @@
 				class="button is-primary is-large is-fullwidth"
 				v-for="answer in answers"
 				v-bind:key="answer"
+				v-on:click="clickAnswer"
 			>{{ answer }}</button>
 		</div>
 	</section>
@@ -32,11 +33,16 @@ export default {
 	},
 	computed: {
 		answers: function() {
-			let answers = []
-			answers = this.incorrect_answers.concat(this.correct_answer)
-			answers = _.shuffle(answers)
+			let arr = _.clone(this.incorrect_answers)
+			arr.push(this.correct_answer)
+			_.shuffle(arr)
 
-			return answers
+			return arr
+		}
+	},
+	methods: {
+		clickAnswer: function() {
+			this.$store.dispatch('setAnswer')
 		}
 	}
 }

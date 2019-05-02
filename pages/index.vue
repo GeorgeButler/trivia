@@ -12,9 +12,6 @@ import Question from '../components/Question'
 
 export default {
 	name: 'Home',
-	async fetch({ store }) {
-		await store.dispatch('getResponse')
-	},
 	components: {
 		Question
 	},
@@ -24,6 +21,9 @@ export default {
 				return state.response.results[state.game.currentQuestion]
 			}
 		})
+	},
+	async fetch({ store }) {
+		await store.dispatch('getResponse')
 	}
 }
 </script>
