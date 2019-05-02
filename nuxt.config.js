@@ -1,4 +1,5 @@
 const pkg = require('./package')
+import webpack from 'webpack'
 
 module.exports = {
 	mode: 'universal',
@@ -49,6 +50,10 @@ module.exports = {
   ** Build configuration
   */
 	build: {
-		extend (config, ctx) {}
+		plugins: [
+			new webpack.ProvidePlugin({
+				_: 'lodash'
+			})
+		]
 	}
 }

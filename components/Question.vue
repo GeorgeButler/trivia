@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
 	name: 'Question',
 	props: {
@@ -32,6 +34,7 @@ export default {
 		answers: function() {
 			let answers = []
 			answers = this.incorrect_answers.concat(this.correct_answer)
+			answers = _.shuffle(answers)
 
 			return answers
 		}
