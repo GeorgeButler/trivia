@@ -1,5 +1,8 @@
 export const state = () => ({
-  response: {},
+  response: {
+    response_code: -1,
+    results: []
+  },
   game: {
     currentQuestion: 0,
     currentScore: 0,
@@ -12,14 +15,18 @@ export const mutations = {
     state.response = response
   },
   advanceQuestion(state) {
-    state.game.currentQuestion = state.game.currentQuestion + 1
-  },
-  setAnswer(state, answer, correct) {
-    state.game.currentAnswer = answer
+    let next = state.game.currentQuestion + 1
 
-    console.log(correct)
-    if (answer === correct) {
-      console.log("NICE!")
+    if (next < state.response.results.length) {
+      state.game.currentQuestion = next
+    }
+  },
+  setAnswer(state, {
+    payload
+  }) {
+    state.game.currentAnswer = payload.answer
+    if (payload.answer === payload.correct) {
+      state.game.currentScore = state.game.currentScore + 1
     }
   }
 }
@@ -37,7 +44,9 @@ export const actions = {
   async setAnswer({
     commit
   }, payload) {
-    commit('setAnswer', payload.answer, payload.correct)
-    //commit('advanceQuestion')
+    commit('setAnswer', {
+      payload
+    })
+    commit('advanceQuestion')
   }
 }
