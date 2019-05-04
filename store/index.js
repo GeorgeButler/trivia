@@ -25,6 +25,7 @@ export const mutations = {
     payload
   }) {
     state.game.currentAnswer = payload.answer
+
     if (payload.answer === payload.correct) {
       state.game.currentScore = state.game.currentScore + 1
     }
