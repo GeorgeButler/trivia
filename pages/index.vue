@@ -2,7 +2,11 @@
   <div class="container">
     <section class="section is-unselectable">
       <div class="columns">
-        <div class="column">{{ game.currentQuestion + 1 }} / {{ totalQuestions }}</div>
+        <div class="column has-text-centered">{{ game.currentQuestion + 1 }} / {{ totalQuestions }}</div>
+        <div class="column has-text-centered">
+          <div>{{ currentQuestion.category }}</div>
+          <div>{{ currentQuestion.difficulty }}</div>
+        </div>
       </div>
       <Question v-bind="currentQuestion"></Question>
     </section>
