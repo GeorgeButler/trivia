@@ -5,6 +5,7 @@ export const state = () => ({
 	},
 	game: {
 		isPlaying: true,
+		isLoading: true,
 		currentQuestion: 0,
 		currentScore: 0,
 		currentAnswer: ''
@@ -14,6 +15,7 @@ export const state = () => ({
 export const mutations = {
 	setResponse (state, response) {
 		state.response = response
+		state.game.isLoading = false
 	},
 	advanceQuestion (state) {
 		let next = state.game.currentQuestion + 1
