@@ -1,16 +1,20 @@
 <template>
-	<section class="section">
-		<h1 class="title has-text-centered" v-html="question"></h1>
-		<div class="buttons">
-			<button
-				class="button is-primary is-large is-fullwidth"
-				v-for="answer in answers"
-				v-bind:key="answer"
-				v-on:click="clickAnswer(answer, correct_answer)"
-				v-html="answer"
-			></button>
-		</div>
-	</section>
+	<div>
+		<transition name="fade">
+			<section class="section" v-if="question">
+				<h1 class="title has-text-centered" v-html="question"></h1>
+				<div class="buttons">
+					<button
+						class="button is-primary is-large is-fullwidth"
+						v-for="answer in answers"
+						v-bind:key="answer"
+						v-on:click="clickAnswer(answer, correct_answer)"
+						v-html="answer"
+					></button>
+				</div>
+			</section>
+		</transition>
+	</div>
 </template>
 
 <script>

@@ -9,11 +9,6 @@
 				</div>
 			</div>
 			<Question v-bind="currentQuestion"></Question>
-			<div class="columns">
-				<div class="column has-text-centered">
-					<div class="is-capitalized">Score: {{ game.currentScore }}</div>
-				</div>
-			</div>
 		</section>
 		<section class="section is-unselectable" v-if="!game.isPlaying">
 			<div class="columns">

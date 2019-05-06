@@ -3,5 +3,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900');
 
 $family-primary: 'Nunito', sans-serif;
+$radius-small: 2px;
+$radius: 2px;
+$radius-large: 2px;
+
+.fade-enter-active {
+	transition: opacity 1.5s;
+}
+.fade-leave-active {
+	opacity: 0;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+}
 
 @import '~bulma';
