@@ -1,17 +1,25 @@
 <template>
 	<div class="container">
-		<section class="section is-unselectable">
+		<section class="section is-unselectable" v-if="game.isPlaying">
 			<div class="columns">
 				<div class="column has-text-centered">{{ game.currentQuestion + 1 }} / {{ totalQuestions }}</div>
 				<div class="column has-text-centered">
 					<div class="is-capitalized">{{ currentQuestion.category }}</div>
-					<div class="is-capitalized">{{ currentQuestion.difficulty }}</div>
+					<div class="is-capitalized">Difficulty: {{ currentQuestion.difficulty }}</div>
 				</div>
 			</div>
 			<Question v-bind="currentQuestion"></Question>
 			<div class="columns">
 				<div class="column has-text-centered">
 					<div class="is-capitalized">Score: {{ game.currentScore }}</div>
+				</div>
+			</div>
+		</section>
+		<section class="section is-unselectable" v-if="!game.isPlaying">
+			<div class="columns">
+				<div class="column has-text-centered">
+					<h1 class="title">Final Score</h1>
+					<div class="is-capitalized">{{ game.currentScore }} / {{ totalQuestions }}</div>
 				</div>
 			</div>
 		</section>
