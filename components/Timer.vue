@@ -1,6 +1,6 @@
 <template>
 	<section class="section">
-		<progress class="progress is-primary" v-bind:value="timeLeft" max="5000">{{timeLeft}}</progress>
+		<progress class="progress is-primary" v-bind:value="timeLeft" max="5000">Time Left: {{timeLeft}}</progress>
 	</section>
 </template>
 

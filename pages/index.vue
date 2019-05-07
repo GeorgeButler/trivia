@@ -1,6 +1,11 @@
 <template>
 	<div v-if="game.isLoading">
-		<h1 class="title">Loading</h1>
+		<div class="container">
+			<section class="section is-unselectable">
+				<h1 class="title has-text-centered">Fetching API Response...</h1>
+				<progress class="progress is-primary" max="100">Loading</progress>
+			</section>
+		</div>
 	</div>
 	<div v-else>
 		<div class="container">

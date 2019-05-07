@@ -6,7 +6,7 @@
 		<section class="section">
 			<div class="buttons">
 				<button
-					class="button is-primary is-outlined is-large is-fullwidth"
+					class="button is-primary is-outlined is-large is-fullwidth is-rounded"
 					v-for="answer in answers"
 					v-bind:key="answer"
 					v-on:click="clickAnswer(answer)"
