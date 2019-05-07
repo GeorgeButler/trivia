@@ -1,19 +1,19 @@
 <template>
 	<div>
-		<transition name="fade">
-			<section class="section" v-if="question">
-				<h1 class="title has-text-centered" v-html="question"></h1>
-				<div class="buttons">
-					<button
-						class="button is-primary is-large is-fullwidth"
-						v-for="answer in answers"
-						v-bind:key="answer"
-						v-on:click="clickAnswer(answer, correct_answer)"
-						v-html="answer"
-					></button>
-				</div>
-			</section>
-		</transition>
+		<section class="section" v-if="question">
+			<h1 class="title has-text-centered" v-html="question"></h1>
+		</section>
+		<section class="section">
+			<div class="buttons">
+				<button
+					class="button is-primary is-outlined is-large is-fullwidth"
+					v-for="answer in answers"
+					v-bind:key="answer"
+					v-on:click="clickAnswer(answer)"
+					v-html="answer"
+				></button>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -50,10 +50,10 @@ export default {
 		}
 	},
 	methods: {
-		clickAnswer: function(text, correctText) {
+		clickAnswer: function(text) {
 			this.$store.dispatch('setAnswer', {
 				answer: text,
-				correct: correctText
+				correct: this.correct_answer
 			})
 		}
 	}

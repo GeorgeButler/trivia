@@ -13,6 +13,7 @@
 					</div>
 				</div>
 				<Question v-bind="currentQuestion"></Question>
+				<Timer></Timer>
 			</section>
 			<section class="section is-unselectable" v-if="!game.isPlaying">
 				<div class="columns">
@@ -29,11 +30,13 @@
 <script>
 import { mapState } from 'vuex'
 import Question from '../components/Question'
+import Timer from '../components/Timer'
 
 export default {
 	name: 'Home',
 	components: {
-		Question
+		Question,
+		Timer
 	},
 	computed: {
 		...mapState({
