@@ -11,7 +11,8 @@ export default {
 	name: 'Timer',
 	data: function() {
 		return {
-			timeLeft: 5000
+			timeLeft: 5000,
+			doTick: true
 		}
 	},
 	computed: {
@@ -23,17 +24,22 @@ export default {
 	},
 	methods: {
 		tick: function() {
-			if (this.game.isPlaying) {
+			if (this.game.isPlaying && this.doTick) {
 				if (this.timeLeft - 1 > 0) {
 					this.timeLeft = this.timeLeft - 1
 				} else {
-					this.timeUp()
+					this.doTick = false
+
+					setTimeout(() => {
+						this.timeUp()
+					}, 3000)
 				}
 			}
 		},
 		timeUp: function() {
 			this.timeLeft = 5000
 			this.$store.dispatch('advanceQuestion')
+			this.doTick = true
 		}
 	},
 	mounted() {
