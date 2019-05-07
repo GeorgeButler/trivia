@@ -8,8 +8,8 @@
 		</div>
 	</div>
 	<div v-else>
-		<div class="container">
-			<section class="section is-unselectable" v-if="game.isPlaying">
+		<div class="container" v-if="game.isPlaying">
+			<section class="section is-unselectable">
 				<div class="columns">
 					<div class="column has-text-centered">{{ game.currentQuestion + 1 }} / {{ totalQuestions }}</div>
 					<div class="column has-text-centered">
@@ -20,15 +20,22 @@
 				<Question v-bind="currentQuestion"></Question>
 				<Timer></Timer>
 			</section>
-			<section class="section is-unselectable" v-if="!game.isPlaying">
-				<div class="columns">
-					<div class="column has-text-centered">
-						<h1 class="title">Final Score</h1>
-						<div class="is-capitalized">{{ game.currentScore }} / {{ totalQuestions }}</div>
+		</div>
+		<section class="hero is-fullheight is-unselectable" v-else>
+			<div class="hero-body">
+				<div class="container has-text-centered">
+					<h1 class="title has-text-primary">{{ game.currentScore }} / {{ totalQuestions }}</h1>
+					<h2 class="subtitle">Congratulations!</h2>
+					<div class="columns is-mobile is-centered">
+						<div class="column is-half">
+							<div class="buttons">
+								<button class="button is-primary is-rounded is-large is-fullwidth">Play again?</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	</div>
 </template>
 

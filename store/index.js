@@ -6,6 +6,7 @@ export const state = () => ({
 	game: {
 		isPlaying: true,
 		isLoading: true,
+		addPoints: true,
 		currentQuestion: 0,
 		currentScore: 0,
 		currentAnswer: ''
@@ -20,14 +21,18 @@ export const mutations = {
 	setAnswer (state, { payload }) {
 		state.game.currentAnswer = payload.answer
 
-		if (payload.answer === payload.correct) {
-			state.game.currentScore = state.game.currentScore + 1
+		if (state.game.addPoints) {
+			if (payload.answer === payload.correct) {
+				state.game.addPoints = false
+				state.game.currentScore = state.game.currentScore + 1
+			}
 		}
 	},
 	advanceQuestion (state) {
 		let next = state.game.currentQuestion + 1
 
 		if (next < state.response.results.length) {
+			state.game.addPoints = true
 			state.game.currentQuestion = next
 		} else {
 			state.game.isPlaying = false
