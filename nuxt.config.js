@@ -48,5 +48,12 @@ module.exports = {
 	/*
   ** Build configuration
   */
-	build: {}
+	build: {},
+
+	/*
+  ** Router configuration
+  */
+	router: {
+		base: './'
+	}
 }
