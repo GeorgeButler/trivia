@@ -12,7 +12,8 @@ export default {
 	data: function() {
 		return {
 			timeLeft: 5000,
-			doTick: true
+			doTick: true,
+			intervalFunc: null
 		}
 	},
 	computed: {
@@ -43,8 +44,14 @@ export default {
 		}
 	},
 	mounted() {
-		// 1 Second initial delay, to prevent weirdness
-		setTimeout(() => setInterval(() => this.tick(), 1), 1000)
+		// 2 Second initial delay, to prevent weirdness
+		setTimeout(
+			() => (this.intervalFunc = setInterval(() => this.tick(), 1)),
+			2000
+		)
+	},
+	beforeDestroy() {
+		clearInterval(this.intervalFunc)
 	}
 }
 </script>
