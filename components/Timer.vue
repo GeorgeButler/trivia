@@ -44,10 +44,10 @@ export default {
 		}
 	},
 	mounted() {
-		// 2 Second initial delay, to prevent weirdness
+		// 3 Second initial delay, to prevent weirdness
 		setTimeout(
 			() => (this.intervalFunc = setInterval(() => this.tick(), 1)),
-			2000
+			3000
 		)
 	},
 	beforeDestroy() {
