@@ -48,11 +48,5 @@ module.exports = {
 	/*
   ** Build configuration
   */
-	build: {
-		extend (config, { isDev }) {
-			if (!isDev) {
-				config.output.publicPath = './_nuxt/'
-			}
-		}
-	}
+	build: {}
 }
