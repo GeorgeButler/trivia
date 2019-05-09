@@ -48,12 +48,11 @@ module.exports = {
 	/*
   ** Build configuration
   */
-	build: {},
-
-	/*
-  ** Router configuration
-  */
-	router: {
-		base: './'
+	build: {
+		extend (config, { isDev }) {
+			if (!isDev) {
+				config.output.publicPath = './_nuxt/'
+			}
+		}
 	}
 }
