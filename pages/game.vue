@@ -2,7 +2,7 @@
 	<div v-if="game.isLoading">
 		<div class="container">
 			<section class="section is-unselectable">
-				<h1 class="title has-text-centered">Fetching API Response...</h1>
+				<h1 class="title has-text-centered">Fetching Questions...</h1>
 				<progress class="progress is-primary" max="100">Loading</progress>
 			</section>
 		</div>
@@ -64,8 +64,8 @@ export default {
 			}
 		})
 	},
-	async fetch({ store }) {
-		await store.dispatch('getResponse')
+	mounted: function() {
+		this.$store.dispatch('getResponse')
 	}
 }
 </script>
