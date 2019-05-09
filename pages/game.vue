@@ -29,7 +29,7 @@
 					<div class="columns is-mobile is-centered">
 						<div class="column is-half">
 							<div class="buttons">
-								<button class="button is-primary is-rounded is-large is-fullwidth">Play again?</button>
+								<nuxt-link to="/" class="button is-primary is-rounded is-large is-fullwidth">Play again</nuxt-link>
 							</div>
 						</div>
 					</div>
