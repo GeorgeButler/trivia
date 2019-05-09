@@ -22,9 +22,10 @@ export const mutations = {
 	setAnswer (state, { payload }) {
 		if (state.game.canAction) {
 			state.game.currentAnswer = payload.answer
-			state.game.canAddPoints = false
 
 			if (state.game.canAddPoints) {
+				state.game.canAddPoints = false
+
 				if (payload.answer === payload.correct) {
 					state.game.currentScore = state.game.currentScore + 1
 				}
