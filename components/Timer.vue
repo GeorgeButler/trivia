@@ -21,7 +21,10 @@ export default {
 			game: state => {
 				return state.game
 			}
-		})
+		}),
+		timeLeftCalc: function() {
+			return true
+		}
 	},
 	methods: {
 		tick: function() {

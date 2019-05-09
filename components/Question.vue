@@ -5,13 +5,7 @@
 		</section>
 		<section class="section">
 			<div class="buttons">
-				<button
-					class="button is-primary is-outlined is-large is-fullwidth is-rounded"
-					v-for="answer in answers"
-					v-bind:key="answer"
-					v-on:click="clickAnswer(answer)"
-					v-html="answer"
-				></button>
+				<Answer v-for="answer in answers" :key="answer" :text="answer" :correct="correct_answer"></Answer>
 			</div>
 		</section>
 	</div>
@@ -19,9 +13,13 @@
 
 <script>
 import _ from 'lodash'
+import Answer from '../components/Answer'
 
 export default {
 	name: 'Question',
+	components: {
+		Answer
+	},
 	props: {
 		question: {
 			type: String,
@@ -47,14 +45,6 @@ export default {
 			_.shuffle(arr)
 
 			return arr
-		}
-	},
-	methods: {
-		clickAnswer: function(text) {
-			this.$store.dispatch('setAnswer', {
-				answer: text,
-				correct: this.correct_answer
-			})
 		}
 	}
 }

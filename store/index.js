@@ -34,6 +34,7 @@ export const mutations = {
 		if (next < state.response.results.length) {
 			state.game.addPoints = true
 			state.game.currentQuestion = next
+			state.game.currentAnswer = ''
 		} else {
 			state.game.isPlaying = false
 		}
