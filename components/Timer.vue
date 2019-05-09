@@ -33,6 +33,7 @@ export default {
 					this.timeLeft = this.timeLeft - 1
 				} else {
 					this.doTick = false
+					this.$store.dispatch('setCanAction', { canAction: false })
 
 					setTimeout(() => {
 						this.timeUp()
@@ -41,8 +42,10 @@ export default {
 			}
 		},
 		timeUp: function() {
-			this.timeLeft = 5000
 			this.$store.dispatch('advanceQuestion')
+			this.$store.dispatch('setCanAction', { canAction: true })
+
+			this.timeLeft = 5000
 			this.doTick = true
 		}
 	},

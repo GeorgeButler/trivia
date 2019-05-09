@@ -19,20 +19,21 @@ export const mutations = {
 		state.game.isLoading = false
 	},
 	setAnswer (state, { payload }) {
-		state.game.currentAnswer = payload.answer
-
 		if (state.game.canAction) {
+			state.game.currentAnswer = payload.answer
+
 			if (payload.answer === payload.correct) {
-				state.game.canAction = false
 				state.game.currentScore = state.game.currentScore + 1
 			}
 		}
+	},
+	setCanAction (state, { payload }) {
+		state.game.canAction = payload.canAction
 	},
 	advanceQuestion (state) {
 		let next = state.game.currentQuestion + 1
 
 		if (next < state.response.results.length) {
-			state.game.canAction = true
 			state.game.currentQuestion = next
 			state.game.currentAnswer = ''
 		} else {
@@ -51,6 +52,11 @@ export const actions = {
 	},
 	async setAnswer ({ commit }, payload) {
 		commit('setAnswer', {
+			payload
+		})
+	},
+	async setCanAction ({ commit }, payload) {
+		commit('setCanAction', {
 			payload
 		})
 	},

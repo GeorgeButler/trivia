@@ -4,6 +4,7 @@
 		v-html="text"
 		v-on:click="clickAnswer(text)"
 		v-bind:class="{ 'is-focused': isSelected, 'is-outlined': !isSelected }"
+		:disabled="!game.canAction"
 	></button>
 </template>
 
